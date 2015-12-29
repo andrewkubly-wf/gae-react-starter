@@ -3,11 +3,11 @@ AppShell = require('../layout/AppShell').AppShell;
 
 var IndexPage = React.createClass({
 
+    displayName: 'IndexPage',
+
     render: function() {
         return (
-            <AppShell title="GAE REACT PRIMER">
-                <p>This is a test</p>
-            </AppShell>
+            <AppShell url={this.props.url} />
         );
     }
 });

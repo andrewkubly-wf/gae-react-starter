@@ -1,0 +1,83 @@
+.taskEntity {
+    padding: 10px;
+    background-color: gray;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 300px;
+    color: #EEEEEE;
+    display: inline-block;
+}
+
+.taskList {
+    padding: 5px;
+    background-color: #A9A9A9;
+    width: 320px;
+}
+
+.taskName {
+    text-align: left;
+    padding-left: 5px;
+    display: inline-block;
+}
+
+.taskDueAt {
+    text-align: right;
+    display: inline-block;
+    float: right;
+}
+
+.loadMoreButton {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #D3D3D3;
+    border-width: 1px;
+    margin: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: gray;
+    color: #EEEEEE;
+    width: 75px;
+    margin-left: 73%;
+    margin-right: 2%;
+}
+
+
+.taskBox {
+    padding: 15px;
+    background-color: #DCDCDC;
+    width: 330px;
+}
+
+.hiddenInputs {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.hidden_input {
+    display: none
+}
+
+.mainTextInput {
+    width: 330px;
+}
+
+.dateInput {
+    width: 110px;
+    margin-right: 2px;
+    margin-left: 2px;
+
+}
+
+.subTextInputL {
+    width: 85px;
+    margin-right: 2px;
+}
+
+.subTextInputR {
+    width: 85px;
+    margin-left: 2px;
+}
+
+.submitInput {
+    margin-left: 5px;
+}
