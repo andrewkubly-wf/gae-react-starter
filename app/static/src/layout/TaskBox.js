@@ -2,6 +2,9 @@ var React = require('react');
 
 TaskForm = require('../layout/TaskForm').TaskForm;
 
+
+var TaskStore = [];
+
 var TaskBox = React.createClass({
     getInitialState: function() {
         return {data: []};
@@ -30,6 +33,14 @@ var TaskBox = React.createClass({
         task.id = Date.now();
         var newTasks = tasks.concat([task]);
         this.setState({data: newTasks});
+    },
+
+    handleLoadMoreClick: function(event) {
+        var task = {id: Date.now(), name: 'Test Load more', due_at: Date.now()};
+        var tasks = this.state.data;
+        var newTasks = tasks.concat([task]);
+        this.setState({data: newTasks});
+    },
 
         // Uncomment if you actually want to post to the server
         // $.ajax({
@@ -45,35 +56,40 @@ var TaskBox = React.createClass({
         //     console.error(this.props.url, status, err.toString());
         //   }.bind(this)
         // });
-    },
 
     render: function() {
         return(
             <div className="taskBox">
                 <TaskForm onTaskSubmit={this.handleTaskSubmit} />
-                <TaskList data={this.state.data}> {this.props.children} </TaskList>
+                <TaskList data={this.state.data} loadMoreClick={this.handleLoadMoreClick}> {this.props.children} </TaskList>
             </div>
         );
     }
 });
 
 var TaskList = React.createClass({
+
+    getInitialState: function() {
+        return {data: []};
+    },
+
+    componentWillReceiveProps: function(nextProps) {
+        var newData = this.state.data.concat(nextProps.data);
+        this.setState({data: nextProps.data});
+    },
+
     render: function() {
-        var TaskNodes = this.props.data.map(function(task) {
+        var TaskNodes = this.state.data.map(function(task) {
             return (<Task due_at={task.due_at}>{task.name}</Task>);
         });
-        return(<div className='taskList'>{ TaskNodes } <LoadMoreButton /></div>);
+        return(<div className='taskList'>{ TaskNodes } <LoadMoreButton onClick={this.props.loadMoreClick} /></div>);
     }
 });
 
 var LoadMoreButton = React.createClass({
 
-    handleClick: function() {
-
-    },
-
     render: function() {
-        return (<div onClick={this.handleClick} className='loadMoreButton'>Load More</div>)
+        return (<div onClick={this.props.onClick} className='loadMoreButton'>Load More</div>)
     }
 });
 

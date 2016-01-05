@@ -85,23 +85,10 @@ var TaskInputs = React.createClass({
 
 var TaskForm = React.createClass({
 
-    handleSubmit: function(task) {
-
-        var name = task.name.trim();
-        var due_at = task.due_at.trim();
-        var recipient = task.recipient.trim();
-        var location = task.location.trim();
-        if (!name || !due_at) {
-          return;
-        }
-        console.log(task);
-        this.props.onTaskSubmit({name: name, due_at: due_at, recipient: recipient, location: location});
-    },
-
     render: function() {
         return(
             <form className="taskForm">
-                <TaskInputs onFormSubmit={this.handleSubmit}/>
+                <TaskInputs onFormSubmit={this.props.onTaskSubmit}/>
             </form>
         );
     }
