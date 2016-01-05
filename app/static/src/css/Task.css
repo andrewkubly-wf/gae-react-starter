@@ -16,7 +16,7 @@
 
 .taskName {
     text-align: left;
-    padding-left: 5px;
+    margin-left: 15px;
     display: inline-block;
 }
 
@@ -24,6 +24,18 @@
     text-align: right;
     display: inline-block;
     float: right;
+}
+
+.taskIcon {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.taskIconHover {
+    background-color: blue;
 }
 
 .loadMoreButton {
@@ -39,6 +51,7 @@
     width: 75px;
     margin-left: 73%;
     margin-right: 2%;
+    cursor: pointer;
 }
 
 

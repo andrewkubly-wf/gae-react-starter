@@ -32,7 +32,9 @@ var TaskInputs = React.createClass({
             name: this.state.name,
             due_at: this.state.due_at,
             location: this.state.location,
-            recipient: this.state.recipient});
+            recipient: this.state.recipient,
+            status: 1
+        });
         this.setState({name: '', due_at: '', recipient: '', location: '', active: false});
     },
 

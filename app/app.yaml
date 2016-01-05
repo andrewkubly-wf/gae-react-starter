@@ -7,7 +7,8 @@ threadsafe: yes
 
 # Temporary setting to keep gcloud from uploading node_modules
 skip_files:
- - ^static/src/.*
+ - ^static/src/layout.*
+ - ^static/src/pages.*
 
 handlers:
 - url: /static
