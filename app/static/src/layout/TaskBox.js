@@ -40,7 +40,7 @@ var TaskBox = React.createClass({
     },
 
     handleLoadMoreClick: function() {
-        var task = {id: IDCOUNT, name: 'Test Load more', due_at: Date.now(), status: 1};
+        var task = {id: IDCOUNT, name: 'Test Load more', due_at: Date.now(), status: 1, recipient:'Some Guy'};
         var tasks = this.state.data;
         var newTasks = tasks.concat([task]);
         taskStore = newTasks;
@@ -133,7 +133,7 @@ var TaskList = React.createClass({
     render: function() {
         statusUpdateFunction = this.handleStatusUpdate;
         var TaskNodes = this.state.data.map(function(task) {
-            return (<Task due_at={task.due_at} handleStatusUpdate={statusUpdateFunction} id={task.id}>{task.name}</Task>);
+            return (<Task due_at={task.due_at} handleStatusUpdate={statusUpdateFunction} id={task.id} recipient={task.recipient}>{task.name}</Task>);
         });
         return(<div className='taskList'>{ TaskNodes } <LoadMoreButton onClick={this.props.loadMoreClick} /></div>);
     }
@@ -148,7 +148,7 @@ var LoadMoreButton = React.createClass({
 
 var Task = React.createClass({
     getInitialState: function(){
-        return {hover: false};
+        return {icon_hover: false, task_expand: false};
     },
 
     updateStatus: function() {
@@ -156,25 +156,53 @@ var Task = React.createClass({
     },
 
     handleHover: function() {
-        this.setState({hover: !this.state.hover});
+        this.setState({icon_hover: !this.state.icon_hover});
     },
 
-    render: function() {
-
-        // Determine the hover state
-        if(this.state.hover){
+    getIconHoverClass: function() {
+        if(this.state.icon_hover){
             icon_class = 'taskIcon taskIconHover';
         }
         else {
             icon_class = 'taskIcon';
         }
+        return icon_class;
+    },
+
+    handleTaskAccordian: function() {
+        this.setState({task_expand: !this.state.task_expand});
+    },
+
+    getTaskExpandClass: function() {
+        if(this.state.task_expand){
+            task_class = ' taskExpanded';
+        }
+        else {
+            task_class = '';
+        }
+        return task_class;
+    },
+
+    render: function() {
+        expanded_class = this.getTaskExpandClass();
+        task_class = 'taskEntity'.concat(expanded_class);
+        recipient_class = 'taskRecipient'.concat(expanded_class);
+        icon_class = this.getIconHoverClass();
 
         // Return the task jsx
         return (
-        <div className='taskEntity'>
+        <div className={task_class} onClick={this.handleTaskAccordian}>
             <div onClick={this.updateStatus} onMouseOver={this.handleHover} onMouseLeave={this.handleHover} className={icon_class}></div>
-            <div className='taskName'>{this.props.children }</div>
-            <div className='taskDueAt'>{this.props.due_at}</div>
+            <div className='taskInfo'>
+                <div className='taskVisibleRow'>
+                    <div className='taskName'>{this.props.children }</div>
+                    <div className='taskDueAt'>{this.props.due_at}</div>
+                </div>
+                <div className='taskHiddenRow'>
+                    <div className={recipient_class}>{this.props.recipient}</div>
+                </div>
+
+            </div>
         </div>
         );
     }

@@ -8,15 +8,47 @@
     display: inline-block;
 }
 
+.taskEntity.taskExpanded {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.taskRecipient {
+    text-align: left;
+    margin-left: 20px;
+    display: inline-block;
+    display: none;
+}
+
+.taskRecipient.taskExpanded {
+    display: inline-block;
+}
+
 .taskList {
     padding: 5px;
     background-color: #A9A9A9;
     width: 320px;
 }
 
+.taskInfo {
+    display: inline-block;
+    padding: 5px;
+    width: 90%;
+}
+
+.taskVisibleRow {
+    display: block;
+}
+
+.taskHiddenRow {
+    display: block;
+    padding-top: 5px;
+}
+
 .taskName {
     text-align: left;
-    margin-left: 15px;
+    margin-left: 20px;
     display: inline-block;
 }
 
@@ -27,6 +59,8 @@
 }
 
 .taskIcon {
+    margin-top: 7px;
+    position: fixed;
     width: 15px;
     height: 15px;
     background-color: white;
